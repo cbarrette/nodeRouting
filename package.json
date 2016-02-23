@@ -1,0 +1,16 @@
+{
+  "name": "routing",
+  "version": "1.0.0",
+  "description": "Routing for home web servers",
+  "main": "routing.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cbarrette",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "http-proxy": "^1.13.2"
+  }
+}
