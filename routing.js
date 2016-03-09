@@ -15,10 +15,17 @@ http.createServer(function(req, res) {
   var conf = JSON.parse(fs.readFileSync(`${__dirname}/conf.json`, 'utf8'));
   var hostname = url.parse(`http://${req.headers.host}`).hostname;
   var host = conf[hostname];
-  target = getTarget(host);
-  console.log(target);
-  proxy.web(req, res, target);
-}).listen(8080);
+  if (!host) {
+    res.writeHead(404, {
+      'Content-Type': 'text/plain'
+    });
+    res.end('Nothing here, move along');
+  } else {
+    target = getTarget(host);
+    console.log(target);
+    proxy.web(req, res, target);
+  }
+}).listen(8000);
 
 
 function getTarget(host) {
