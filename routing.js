@@ -3,6 +3,7 @@ var http = require('http');
 var httpProxy = require('http-proxy');
 var url = require('url');
 
+var conf = JSON.parse(fs.readFileSync(`${__dirname}/conf.json`, 'utf8'));
 
 http.createServer(function(req, res) {
   var proxy = httpProxy.createProxyServer({});
@@ -12,7 +13,6 @@ http.createServer(function(req, res) {
     });
     res.end('Something borked, come back later');
   });
-  var conf = JSON.parse(fs.readFileSync(`${__dirname}/conf.json`, 'utf8'));
   var hostname = url.parse(`http://${req.headers.host}`).hostname;
   var host = conf[hostname];
   if (!host) {
